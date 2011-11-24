@@ -8,20 +8,25 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.util.ArrayList;
 
 public class Piloto extends JFrame {
 
-	static ArrayList<ClasePiloto> ar = new ArrayList<ClasePiloto>();
+	
+	
+	
+	
 
 	public void agregarEs(ClasePiloto cl) {
-		ar.add(cl);
+		
+		Menu.listaP.add(cl);
 	}
 
 	public void igualesEs(ClasePiloto cls) {
 		int re = 0;
-		for (ClasePiloto ad : ar) {
+		for (ClasePiloto ad : Menu.listaP) {
 			if (ad.getIdentificacion() == (cls.getIdentificacion())) {
 				JOptionPane.showMessageDialog(null,
 						"ya existe un piloto con la misma identificacion");
@@ -37,10 +42,10 @@ public class Piloto extends JFrame {
 
 	public void buscarE(ClasePiloto asd) {
 		int oe = 1;
-		if (ar.isEmpty()) {
+		if (Menu.listaP.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "no hay datos");
 		} else {
-			for (ClasePiloto f : ar) {
+			for (ClasePiloto f : Menu.listaP) {
 				if (f.getIdentificacion() == (asd.getIdentificacion())) {
 					System.out.println(f);
 					oe = 1;
@@ -55,13 +60,13 @@ public class Piloto extends JFrame {
 
 	public void actualizarEs(ClasePiloto asdf) {
 		int a = 0;
-		if (ar.isEmpty()) {
+		if (Menu.listaP.isEmpty()) {
 			System.out.println("no hay datos");
 		} else {
-			for (ClasePiloto d : ar) {
+			for (ClasePiloto d : Menu.listaP) {
 				if (d.getIdentificacion() == (asdf.getIdentificacion())) {
-					a = ar.indexOf(d);
-					ar.set(a, asdf);
+					a = Menu.listaP.indexOf(d);
+					Menu.listaP.set(a, asdf);
 					System.out
 							.println("los datos se han actualizado con exito");
 					JOptionPane.showMessageDialog(null,
@@ -79,13 +84,13 @@ public class Piloto extends JFrame {
 
 	public void eliminarEs(ClasePiloto asdfg) {
 		int a = -1;
-		if (ar.isEmpty()) {
+		if (Menu.listaP.isEmpty()) {
 			System.out.println("ni hay datos");
 		} else {
-			for (ClasePiloto c : ar) {
+			for (ClasePiloto c : Menu.listaP) {
 				if (c.getIdentificacion() == (asdfg.getIdentificacion())) {
-					a = ar.indexOf(c);
-					ar.remove(a);
+					a = Menu.listaP.indexOf(c);
+					Menu.listaP.remove(a);
 					System.out.println("el piloto a sido eliminado");
 					JOptionPane.showMessageDialog(null,
 							"el piloto a sido eliminado");
@@ -111,6 +116,7 @@ public class Piloto extends JFrame {
 	JButton B1, b2, b3, b4, B0;
 	JPanel panelNorte, contenedor, panelcentro, panelsur, paneloeste,
 			paneleste;
+	JTable tabla;
 
 	public Piloto() {
 		super("Crear Piloto");
@@ -139,13 +145,15 @@ public class Piloto extends JFrame {
 		label2 = new JLabel("licencia");
 		txt2 = new JTextField();
 		b3 = new JButton("actualizar piloto");
+		
+		tabla = new JTable();
 
 	
 
 		
 
 		contenedor.setLayout(new BorderLayout());
-		panelcentro.setLayout(new GridLayout(6, 2, 30, 30));
+		panelcentro.setLayout(new GridLayout(7, 2, 30, 30));
 
 		// agrega todos los componentes al panel del centro
 		panelcentro.add(label0);
@@ -160,6 +168,7 @@ public class Piloto extends JFrame {
 		panelcentro.add(b2);
 		panelcentro.add(b3);
 		panelcentro.add(b4);
+		panelcentro.add(tabla);
 		
 		B1.addActionListener(new ActionListener() {
 			
@@ -199,7 +208,7 @@ public class Piloto extends JFrame {
 						"");
 				ca.buscarE(cc);				
 				
-				for (ClasePiloto a : ar) {
+				for (ClasePiloto a : Menu.listaP) {
 					Text1.setText(String.valueOf(a.getNombrePiloto()
 							.toString()));
 					combo1.setSelectedItem(String.valueOf(a.getEscuderia()
