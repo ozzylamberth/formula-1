@@ -23,6 +23,9 @@ public class Menu extends JFrame {
 		barra.add(menu5);
 		// cre el item q ira dentro del jmenu crear campeonato
 		JMenuItem crearcamp = new JMenuItem("crear campeonato ");
+		
+		
+			
 		//le agrego a el menu de crear campeonato el item crear campeonato 
 		menu1.add(crearcamp);
 		crearcamp.addActionListener(
@@ -81,17 +84,18 @@ public class Menu extends JFrame {
 				
 			}
 		});
-		
-		crearcamp.addActionListener(
+		JMenuItem resul = new JMenuItem("resultados ");
+		menu3.add(resul);
+		resul.addActionListener(
 
 				new ActionListener() { // clase interna anónima
 
 							// terminar la aplicación cuando el usuario haga clic en elementoSalir
 							@Override
 							public void actionPerformed(ActionEvent evento) {
-								Campeonato formulario = new Campeonato();
-								formulario.setSize(600, 400);
-								formulario.setVisible(true);
+								Resultados re = new Resultados();
+								re.setSize(600, 400);
+								re.setVisible(true);
 								}
 						} // fin de la clase interna anónima
 
