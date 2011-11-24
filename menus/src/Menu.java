@@ -13,15 +13,13 @@ public class Menu extends JFrame {
 		//creo los menus dentro de la barra
 		JMenu menu1 = new JMenu("Campeonato");
 		JMenu menu2 = new JMenu("Piloto");
-		JMenu menu3 = new JMenu("Circuito");
-		JMenu menu4 = new JMenu("Escuderia");
 		JMenu menu5 = new JMenu("Carrera");
+		JMenu menu3 = new JMenu("Resultados");
 		
 		//le agrego a la barra los menus 
 		barra.add(menu1);
-		barra.add(menu2);
 		barra.add(menu3);
-		barra.add(menu4);
+		barra.add(menu2);
 		barra.add(menu5);
 		// cre el item q ira dentro del jmenu crear campeonato
 		JMenuItem crearcamp = new JMenuItem("crear campeonato ");
@@ -61,38 +59,8 @@ public class Menu extends JFrame {
 
 				); // fin de la llamada a addActionListener
 
-		JMenuItem crearcircuito = new JMenuItem("crear circuito");
-		menu3.add(crearcircuito);
+		
 
-		crearcircuito.addActionListener(
-
-		new ActionListener() { // clase interna anónima
-
-					// terminar la aplicación cuando el usuario haga clic en elementoSalir
-					@Override
-					public void actionPerformed(ActionEvent evento) {
-						Circuito formulario = new Circuito();
-						formulario.setSize(500, 250);
-						formulario.setVisible(true);
-					}
-
-				} // fin de la clase interna anónima
-
-				); // fin de la llamada a addActionListener
-
-		JMenuItem crearescuderia = new JMenuItem("crear escuderia");
-		menu4.add(crearescuderia);
-
-		crearescuderia.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent evento) {
-				Escuderia formulario = new Escuderia();
-				formulario.setSize(300,200);
-				formulario.setVisible(true);
-			}
-		}
-
-		);
 
 		JMenuItem crearcarrera = new JMenuItem("crear carrera");
 		menu5.add(crearcarrera);
@@ -113,6 +81,22 @@ public class Menu extends JFrame {
 				
 			}
 		});
+		
+		crearcamp.addActionListener(
+
+				new ActionListener() { // clase interna anónima
+
+							// terminar la aplicación cuando el usuario haga clic en elementoSalir
+							@Override
+							public void actionPerformed(ActionEvent evento) {
+								Campeonato formulario = new Campeonato();
+								formulario.setSize(600, 400);
+								formulario.setVisible(true);
+								}
+						} // fin de la clase interna anónima
+
+				); // fin de la llamada a addActionListener
+
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
