@@ -2,24 +2,22 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JPanel;
 
-public class Resultados {
-	
-	private JTable tabla;
-		
+public class Resultados extends JFrame{
+			
 	private GridLayout cuadricula;
-	// Este es el contenedor de la ventana
+	
 	private Container contenedor;
 	private JPanel panel = new JPanel();
+	private JTable tabla;
 	
 	
 	public void  crearTabla(){ 
@@ -28,7 +26,8 @@ public class Resultados {
 		contenedor = getContentPane();
 		// al contenedor le agrego la cuadricula
 		contenedor.setLayout(cuadricula);
-
+		contenedor.add(panel);
+				
 		Object[][] data = {
 			    {"Kathy", "Smith",
 			     "Snowboarding", new Integer(5), new Boolean(false)},
