@@ -119,20 +119,20 @@ public class Campeonato extends JFrame {
 		b4 = new JButton("buscarc");
 
 		contenedor.setLayout(new BorderLayout());
-		panelcentro.setLayout(new GridLayout(2, 2, 30, 30));
-		otropanel.setLayout(new GridLayout(2,3,30,30));
+		panelcentro.setLayout(new GridLayout(6, 2, 30, 30));
+		
 
 		// agrega todos los componentes al panel del centro
 		panelcentro.add(label1);
 		panelcentro.add(Text1);
 		panelcentro.add(label2);
 		panelcentro.add(Text2);
-		//otropanel.add(label3);
-		//otropanel.add(Text3);
-		//otropanel.add(label4);
-		//otropanel.add(Text4);
-		//otropanel.add(b3);
-		//otropanel.add(b4);
+		panelcentro.add(label3);
+		panelcentro.add(Text3);
+		panelcentro.add(label4);
+		panelcentro.add(Text4);
+		panelcentro.add(b3);
+		panelcentro.add(b4);
 		
 
 		
