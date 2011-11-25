@@ -1,15 +1,19 @@
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+
+
+
 
 public class Campeonato extends JFrame {
 
@@ -83,12 +87,17 @@ public class Campeonato extends JFrame {
 
 	}
 
-	JLabel label1, label2, label3, label4;
-	JTextField Text1, Text2, Text4,Text3;
+	JLabel label1, label2;
+	JTextField Text1, Text2;
+    JCheckBox a;
 	
 	JButton b3, b4;
 	JPanel panelNorte, contenedor, panelcentro, panelsur, paneloeste,otropanel,
 			paneleste;
+	
+	JTable tabla;
+	
+	
 
 	public Campeonato() {
 		super("crear campeonato");
@@ -101,23 +110,26 @@ public class Campeonato extends JFrame {
 		paneleste = new JPanel();
 		paneloeste = new JPanel();
 
-		label1 = new JLabel("id campeonato");
+		label1 = new JLabel("Codigo");
 		Text1 = new JTextField(20);
 		
 
-		label2 = new JLabel("Nombre Campeonato");
+		label2 = new JLabel("Nombre");
 		Text2 = new JTextField();
+				
+		JTable b = new JTable( new Object[][]{
+                {false, null, null},
+                {false, null, null},
+                {false, null, null},
+                {false, null, null}
+            }, new String[] { "Descripcion", "Cantidad",
+				"Precio"});
+		b.setVisible(true);
+
 		
-
-		label3 = new JLabel("nombre piloto");
-		Text3 = new JTextField();
-		b3 = new JButton("buscarp");
-		
-
-		label4 = new JLabel("nombre carrera");
-		Text4 = new JTextField();
-		b4 = new JButton("buscarc");
-
+		b3 = new JButton("Crear");
+	
+	
 		contenedor.setLayout(new BorderLayout());
 		panelcentro.setLayout(new GridLayout(6, 2, 30, 30));
 		
@@ -127,12 +139,10 @@ public class Campeonato extends JFrame {
 		panelcentro.add(Text1);
 		panelcentro.add(label2);
 		panelcentro.add(Text2);
-		panelcentro.add(label3);
-		panelcentro.add(Text3);
-		panelcentro.add(label4);
-		panelcentro.add(Text4);
 		panelcentro.add(b3);
-		panelcentro.add(b4);
+	
+		panelcentro.add(b);
+
 		
 
 		
@@ -145,7 +155,11 @@ public class Campeonato extends JFrame {
 		contenedor.add(paneloeste, BorderLayout.WEST);
 		contenedor.add(paneleste, BorderLayout.EAST);
 		add(contenedor);
+		
+		
+		
 
 	}
+
 
 }
