@@ -8,17 +8,20 @@ import java.util.List;
 
 public class Menu extends JFrame {
 	
-	public static List<Campeonato> listaC = new ArrayList<Campeonato>();
-	public static List<Piloto> listaP= new ArrayList<Piloto>();
-	public static List<Carrera> listaR = new ArrayList<Carrera>();
-	public static List<Resultados> listaResul = new ArrayList<Resultados>();
-	
-	
-	
+	  public static List<ClaseCampeonato> listaC = new ArrayList<ClaseCampeonato>();
+      public static List<ClasePiloto> listaP= new ArrayList<ClasePiloto>();
+      public static List<ClaseCarrera> listaR = new ArrayList<ClaseCarrera>();
+      public static List<Resultados> listaResul = new ArrayList<Resultados>();
 	
 	public Menu() {
+		
+		 
+		  
+
 		super("Formulario formula 1");
-				
+		
+		
+		  
 		//creo la barra donde iran todos los menus
 		JMenuBar barra = new JMenuBar();
 		//creo los menus dentro de la barra
