@@ -1,32 +1,29 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import java.util.ArrayList;
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-
-
-
 
 public class Campeonato extends JFrame {
 
-	static ArrayList<ClaseCampeonato> al = new ArrayList<ClaseCampeonato>();
-
 	public void agregar(ClaseCampeonato ca) {
-		al.add(ca);
+		Menu.listaC.add(ca);
 
 	}
 
 	public void iguales(ClaseCampeonato ca1) {
 		int re = 0;
-		for (ClaseCampeonato a : al) {
+		for (ClaseCampeonato a : Menu.listaC) {
 			if (a.getIdCampeonato() == (ca1.getIdCampeonato())) {
 
 				JOptionPane.showMessageDialog(null,
@@ -42,15 +39,17 @@ public class Campeonato extends JFrame {
 
 	public void actualizar(ClaseCampeonato ca2) {
 		int a = 0;
-		if (al.isEmpty()) {
+		if (Menu.listaC.isEmpty()) {
 			System.out.println("no ahi datos");
 		} else {
-			for (ClaseCampeonato b : al) {
+			for (ClaseCampeonato b : Menu.listaC) {
 				if (b.getIdCampeonato() == (ca2.getIdCampeonato())) {
-					a = al.indexOf(b);
-					al.set(a, ca2);
-					System.out.println("los datos se han actualizado con exito");
-					JOptionPane.showMessageDialog(null,"los datos se han actualizado cone exito");
+					a = Menu.listaC.indexOf(b);
+					Menu.listaC.set(a, ca2);
+					System.out
+							.println("los datos se han actualizado con exito");
+					JOptionPane.showMessageDialog(null,
+							"los datos se han actualizado cone exito");
 				} else {
 					System.out
 							.println("no existe ningun campeonato con ese id");
@@ -65,14 +64,14 @@ public class Campeonato extends JFrame {
 		int oe = 0;
 		// con el isempty si mira si el arraylist esta vacio nos muestra en
 		// pantalla el mensaje
-		if (al.isEmpty()) {
+		if (Menu.listaC.isEmpty()) {
 			System.out.println("no hay datos");
 
 			// se crea un for que me recorre todo el indice de el arraylist y me
 			// compara si loq ingresa el usuario es igual a algun indice del
 			// arraylist muestra en pantalla los datos de ese indice
 		} else {
-			for (ClaseCampeonato c : al) {
+			for (ClaseCampeonato c : Menu.listaC) {
 				if (c.getIdCampeonato() == (ad.getIdCampeonato())) {
 					System.out.println(c.toString());
 					oe = 1;
@@ -89,20 +88,16 @@ public class Campeonato extends JFrame {
 
 	JLabel label1, label2;
 	JTextField Text1, Text2;
-    JCheckBox a;
-	
+
 	JButton b3, b4;
-	JPanel panelNorte, contenedor, panelcentro, panelsur, paneloeste,otropanel,
-			paneleste;
-	
-	JTable tabla;
-	
-	
+	JPanel panelNorte, contenedor, panelcentro, panelsur, paneloeste,
+			otropanel, paneleste;
+
+	JTable b;
 
 	public Campeonato() {
 		super("crear campeonato");
 
-		String combo[] = { "BCA", "MCA", "PPC", "CIC" };
 		contenedor = new JPanel();
 		panelNorte = new JPanel();
 		panelsur = new JPanel();
@@ -112,27 +107,14 @@ public class Campeonato extends JFrame {
 
 		label1 = new JLabel("Codigo");
 		Text1 = new JTextField(20);
-		
 
 		label2 = new JLabel("Nombre");
 		Text2 = new JTextField();
-				
-		JTable b = new JTable( new Object[][]{
-                {false, null, null},
-                {false, null, null},
-                {false, null, null},
-                {false, null, null}
-            }, new String[] { "Descripcion", "Cantidad",
-				"Precio"});
-		b.setVisible(true);
 
-		
 		b3 = new JButton("Crear");
-	
-	
+
 		contenedor.setLayout(new BorderLayout());
-		panelcentro.setLayout(new GridLayout(6, 2, 30, 30));
-		
+		panelcentro.setLayout(new GridLayout(3, 2, 50, 50));
 
 		// agrega todos los componentes al panel del centro
 		panelcentro.add(label1);
@@ -140,12 +122,6 @@ public class Campeonato extends JFrame {
 		panelcentro.add(label2);
 		panelcentro.add(Text2);
 		panelcentro.add(b3);
-	
-		panelcentro.add(b);
-
-		
-
-		
 		
 		// se le agrega al contenedor todos los paneles en diferentes partes del
 		// frame para una mejor distribucion del los componentes
@@ -153,13 +129,42 @@ public class Campeonato extends JFrame {
 		contenedor.add(panelNorte, BorderLayout.NORTH);
 		contenedor.add(panelsur, BorderLayout.SOUTH);
 		contenedor.add(paneloeste, BorderLayout.WEST);
-		contenedor.add(paneleste, BorderLayout.EAST);
 		add(contenedor);
-		
-		
-		
 
+		Object[][] objects = new Object[Menu.listaP.size()][4];
+		for (int i = 0; i < Menu.listaP.size(); i++) {
+			objects[i][0] = Menu.listaP.get(i).getIdentificacion();
+			objects[i][1] = Menu.listaP.get(i).getNombrePiloto();
+			objects[i][2] = Menu.listaP.get(i).getEscuderia();
+			objects[i][3] = Menu.listaP.get(i).getLicencia();
+
+		}
+
+		String[] name = { "Identificacion", "Nombre", "Escuderia", "Licencia" };
+
+		b = new JTable(objects, name);
+
+		/*
+		 * if (b != null) { this.contenedor.remove(11);
+		 * 
+		 * }
+		 */
+		// Configuro la dimension de la tabla
+
+		b.setPreferredScrollableViewportSize(new Dimension(900, 300));
+		// Redibujo la tabla
+		b.repaint();
+		// Agrego los datos a la tabla en sus respectivas celdas
+		b.addRowSelectionInterval(0, 0);
+		// Dimensiono un scrollPane
+		b.setPreferredScrollableViewportSize(new Dimension(900, 300));
+		// creo un scrollPane
+		JScrollPane scroll = new JScrollPane(b);
+		// Agrego el scrollPane al contenedor
+		getContentPane().add(scroll, BorderLayout.SOUTH);
+		// Configuro la visibilidad del ScrollPane
+		setVisible(true);
+		// Creo el evento para cerrar la ventana
+		
 	}
-
-
 }
