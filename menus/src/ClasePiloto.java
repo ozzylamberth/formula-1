@@ -1,12 +1,12 @@
 public class ClasePiloto {
 	
-	public int identificacion;
+	public String identificacion;
 	public String nombrePiloto;
 	public String escuderia;
 	public String licencia;
 
 
-	public ClasePiloto(int identificacion, String nombrePiloto,
+	public ClasePiloto(String identificacion, String nombrePiloto,
 			String escuderia, String licencia) {
 		this.identificacion = identificacion;
 		this.nombrePiloto = nombrePiloto;
@@ -15,7 +15,11 @@ public class ClasePiloto {
 	}
 	
 
-	public int getIdentificacion() {
+	
+
+
+
+	public String getIdentificacion() {
 		return identificacion;
 	}
 
@@ -23,9 +27,11 @@ public class ClasePiloto {
 
 
 
-	public void setIdentificacion(int identificacion) {
+
+	public void setIdentificacion(String identificacion) {
 		this.identificacion = identificacion;
 	}
+
 
 
 
@@ -39,9 +45,11 @@ public class ClasePiloto {
 
 
 
+
 	public void setNombrePiloto(String nombrePiloto) {
 		this.nombrePiloto = nombrePiloto;
 	}
+
 
 
 
@@ -55,9 +63,11 @@ public class ClasePiloto {
 
 
 
+
 	public void setEscuderia(String escuderia) {
 		this.escuderia = escuderia;
 	}
+
 
 
 
@@ -71,11 +81,17 @@ public class ClasePiloto {
 
 
 
+
 	public void setLicencia(String licencia) {
 		this.licencia = licencia;
 	}
 
 
+
+
+
+
+	
 
 
 
@@ -85,13 +101,15 @@ public class ClasePiloto {
 		int result = 1;
 		result = prime * result
 				+ ((escuderia == null) ? 0 : escuderia.hashCode());
-		result = prime * result + identificacion;
+		result = prime * result
+				+ ((identificacion == null) ? 0 : identificacion.hashCode());
 		result = prime * result
 				+ ((licencia == null) ? 0 : licencia.hashCode());
 		result = prime * result
 				+ ((nombrePiloto == null) ? 0 : nombrePiloto.hashCode());
 		return result;
 	}
+
 
 
 
@@ -105,13 +123,16 @@ public class ClasePiloto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final ClasePiloto other = (ClasePiloto) obj;
+		ClasePiloto other = (ClasePiloto) obj;
 		if (escuderia == null) {
 			if (other.escuderia != null)
 				return false;
 		} else if (!escuderia.equals(other.escuderia))
 			return false;
-		if (identificacion != other.identificacion)
+		if (identificacion == null) {
+			if (other.identificacion != null)
+				return false;
+		} else if (!identificacion.equals(other.identificacion))
 			return false;
 		if (licencia == null) {
 			if (other.licencia != null)
@@ -125,6 +146,7 @@ public class ClasePiloto {
 			return false;
 		return true;
 	}
+
 
 
 
