@@ -295,11 +295,7 @@ public class Piloto extends JFrame {
 		contenedor.add(paneleste, BorderLayout.EAST);
 		add(contenedor);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
+		
 	}
 		
 		class MyTableModel extends AbstractTableModel {
@@ -360,18 +356,5 @@ public class Piloto extends JFrame {
 		}
 		
 
-		
-
-		
-
-
 	
-	
-	public static void main(String[] args) {
-		Piloto frame = new Piloto();
-		frame.pack();
-		frame.setVisible(true);
-		frame.setSize(400, 400);
-	}
-
 }

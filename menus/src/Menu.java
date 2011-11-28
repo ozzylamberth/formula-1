@@ -1,61 +1,54 @@
 import javax.swing.*;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Menu extends JFrame {
-	
-	  public static List<ClaseCampeonato> listaC = new ArrayList<ClaseCampeonato>();
-      public static List<ClasePiloto> listaP= new ArrayList<ClasePiloto>();
-      public static List<ClaseCarrera> listaR = new ArrayList<ClaseCarrera>();
-      public static List<Resultados> listaResul = new ArrayList<Resultados>();
-	
+
+	public static List<ClaseCampeonato> listaC = new ArrayList<ClaseCampeonato>();
+	public static List<ClasePiloto> listaP = new ArrayList<ClasePiloto>();
+	public static List<ClaseCarrera> listaR = new ArrayList<ClaseCarrera>();
+	public static List<Resultados> listaResul = new ArrayList<Resultados>();
+
 	public Menu() {
-		
-		 
-		  
 
 		super("Formulario formula 1");
-		
-		
-		  
-		//creo la barra donde iran todos los menus
+
+		// creo la barra donde iran todos los menus
 		JMenuBar barra = new JMenuBar();
-		//creo los menus dentro de la barra
+		// creo los menus dentro de la barra
 		JMenu menu1 = new JMenu("Campeonato");
 		JMenu menu2 = new JMenu("Piloto");
 		JMenu menu5 = new JMenu("Carrera");
 		JMenu menu3 = new JMenu("Resultados");
-		
-		//le agrego a la barra los menus 
+
+		// le agrego a la barra los menus
 		barra.add(menu1);
 		barra.add(menu3);
 		barra.add(menu2);
 		barra.add(menu5);
 		// cre el item q ira dentro del jmenu crear campeonato
 		JMenuItem crearcamp = new JMenuItem("crear campeonato ");
-		
-		
-			
-		//le agrego a el menu de crear campeonato el item crear campeonato 
+
+		// le agrego a el menu de crear campeonato el item crear campeonato
 		menu1.add(crearcamp);
 		crearcamp.addActionListener(
 
 		new ActionListener() { // clase interna anónima
 
-					// terminar la aplicación cuando el usuario haga clic en elementoSalir
+					// terminar la aplicación cuando el usuario haga clic en
+					// elementoSalir
 					@Override
 					public void actionPerformed(ActionEvent evento) {
 						Campeonato formulario = new Campeonato();
-						formulario.setSize(600, 400);
+						formulario.setSize(900, 700);
 						formulario.setVisible(true);
-						}
+					}
 				} // fin de la clase interna anónima
 
-		); // fin de la llamada a addActionListener
+				); // fin de la llamada a addActionListener
 
 		JMenuItem crearpiloto = new JMenuItem("crar piloto");
 		menu2.add(crearpiloto);
@@ -64,7 +57,8 @@ public class Menu extends JFrame {
 
 		new ActionListener() { // clase interna anónima
 
-					// terminar la aplicación cuando el usuario haga clic en elementoSalir
+					// terminar la aplicación cuando el usuario haga clic en
+					// elementoSalir
 					@Override
 					public void actionPerformed(ActionEvent evento) {
 						Piloto formulario = new Piloto();
@@ -76,9 +70,6 @@ public class Menu extends JFrame {
 
 				); // fin de la llamada a addActionListener
 
-		
-
-
 		JMenuItem crearcarrera = new JMenuItem("crear carrera");
 		menu5.add(crearcarrera);
 
@@ -89,32 +80,32 @@ public class Menu extends JFrame {
 				formulario.setVisible(true);
 			}
 		});
-		
+
 		JMenuItem iniciarCarrera = new JMenuItem("Iniciar Carrera");
 		menu5.add(iniciarCarrera);
 
 		crearcarrera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-				
+
 			}
 		});
 		JMenuItem resul = new JMenuItem("resultados ");
 		menu3.add(resul);
 		resul.addActionListener(
 
-				new ActionListener() { // clase interna anónima
+		new ActionListener() { // clase interna anónima
 
-							// terminar la aplicación cuando el usuario haga clic en elementoSalir
-							@Override
-							public void actionPerformed(ActionEvent evento) {
-								Resultados re = new Resultados();
-								re.setSize(600, 400);
-								re.setVisible(true);
-								}
-						} // fin de la clase interna anónima
+					// terminar la aplicación cuando el usuario haga clic en
+					// elementoSalir
+					@Override
+					public void actionPerformed(ActionEvent evento) {
+						Resultados re = new Resultados();
+						re.setSize(600, 400);
+						re.setVisible(true);
+					}
+				} // fin de la clase interna anónima
 
 				); // fin de la llamada a addActionListener
-
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
