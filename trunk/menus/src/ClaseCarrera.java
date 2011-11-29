@@ -1,80 +1,101 @@
 public class ClaseCarrera {
-
-	public String nombreCarrera;
+	
+	
+	public String idCarrera;
+	public String fecha;
+	public String nombre;
+	public String numvueltas;
 	public String circuito;
-	public String nombrePiloto1;
-	public String nombrePiloto2;
-	public String nombrePiloto3;
-	public int pocision1;
-	public int pocision2;
-	public int pocision3;
-	public String getNombreCarrera() {
-		return nombreCarrera;
+	
+	public ClaseCarrera (String idCarrera, String fecha,String nombre,String numvueltas,String circuito) {
+		
+		
+		this.idCarrera = idCarrera;
+		this.fecha = fecha;
+		this.nombre = nombre;
+		this.numvueltas = numvueltas;
+		this.circuito = circuito;
+		}
+	
+
+	
+	public String getIdCarrera() {
+		return idCarrera;
 	}
-	public void setNombreCarrera(String nombreCarrera) {
-		this.nombreCarrera = nombreCarrera;
+
+
+
+	public void setIdCarrera(String idCarrera) {
+		this.idCarrera = idCarrera;
 	}
+
+
+
+	public String getFecha() {
+		return fecha;
+	}
+
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+	public String getNumvueltas() {
+		return numvueltas;
+	}
+
+
+
+	public void setNumvueltas(String numvueltas) {
+		this.numvueltas = numvueltas;
+	}
+
+
+
 	public String getCircuito() {
 		return circuito;
 	}
+
+
+
 	public void setCircuito(String circuito) {
 		this.circuito = circuito;
 	}
-	public String getNombrePiloto1() {
-		return nombrePiloto1;
-	}
-	public void setNombrePiloto1(String nombrePiloto1) {
-		this.nombrePiloto1 = nombrePiloto1;
-	}
-	public String getNombrePiloto2() {
-		return nombrePiloto2;
-	}
-	public void setNombrePiloto2(String nombrePiloto2) {
-		this.nombrePiloto2 = nombrePiloto2;
-	}
-	public String getNombrePiloto3() {
-		return nombrePiloto3;
-	}
-	public void setNombrePiloto3(String nombrePiloto3) {
-		this.nombrePiloto3 = nombrePiloto3;
-	}
-	public int getPocision1() {
-		return pocision1;
-	}
-	public void setPocision1(int pocision1) {
-		this.pocision1 = pocision1;
-	}
-	public int getPocision2() {
-		return pocision2;
-	}
-	public void setPocision2(int pocision2) {
-		this.pocision2 = pocision2;
-	}
-	public int getPocision3() {
-		return pocision3;
-	}
-	public void setPocision3(int pocision3) {
-		this.pocision3 = pocision3;
-	}
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
 				+ ((circuito == null) ? 0 : circuito.hashCode());
+		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result
-				+ ((nombreCarrera == null) ? 0 : nombreCarrera.hashCode());
+				+ ((idCarrera == null) ? 0 : idCarrera.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result
-				+ ((nombrePiloto1 == null) ? 0 : nombrePiloto1.hashCode());
-		result = prime * result
-				+ ((nombrePiloto2 == null) ? 0 : nombrePiloto2.hashCode());
-		result = prime * result
-				+ ((nombrePiloto3 == null) ? 0 : nombrePiloto3.hashCode());
-		result = prime * result + pocision1;
-		result = prime * result + pocision2;
-		result = prime * result + pocision3;
+				+ ((numvueltas == null) ? 0 : numvueltas.hashCode());
 		return result;
 	}
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -83,44 +104,39 @@ public class ClaseCarrera {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final ClaseCarrera other = (ClaseCarrera) obj;
+		ClaseCarrera other = (ClaseCarrera) obj;
 		if (circuito == null) {
 			if (other.circuito != null)
 				return false;
 		} else if (!circuito.equals(other.circuito))
 			return false;
-		if (nombreCarrera == null) {
-			if (other.nombreCarrera != null)
+		if (fecha == null) {
+			if (other.fecha != null)
 				return false;
-		} else if (!nombreCarrera.equals(other.nombreCarrera))
+		} else if (!fecha.equals(other.fecha))
 			return false;
-		if (nombrePiloto1 == null) {
-			if (other.nombrePiloto1 != null)
+		if (idCarrera == null) {
+			if (other.idCarrera != null)
 				return false;
-		} else if (!nombrePiloto1.equals(other.nombrePiloto1))
+		} else if (!idCarrera.equals(other.idCarrera))
 			return false;
-		if (nombrePiloto2 == null) {
-			if (other.nombrePiloto2 != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!nombrePiloto2.equals(other.nombrePiloto2))
+		} else if (!nombre.equals(other.nombre))
 			return false;
-		if (nombrePiloto3 == null) {
-			if (other.nombrePiloto3 != null)
+		if (numvueltas == null) {
+			if (other.numvueltas != null)
 				return false;
-		} else if (!nombrePiloto3.equals(other.nombrePiloto3))
-			return false;
-		if (pocision1 != other.pocision1)
-			return false;
-		if (pocision2 != other.pocision2)
-			return false;
-		if (pocision3 != other.pocision3)
+		} else if (!numvueltas.equals(other.numvueltas))
 			return false;
 		return true;
 	}
-	
+
+
+
 	public String toString() {
-		return nombreCarrera + " " + circuito + " " + nombrePiloto1 +""+nombrePiloto2+" "
-		+nombrePiloto3+""+pocision1+""+pocision2+""+pocision3;
+		return idCarrera+""+ fecha + " " + nombre + " " + numvueltas +""+circuito+" ";
 	}
 	
 	
