@@ -1,16 +1,11 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JButton;
-
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -95,6 +90,8 @@ public class Campeonato extends JFrame {
 
 	JTable b;
 
+	JCheckBox a;
+
 	public Campeonato() {
 		super("crear campeonato");
 
@@ -114,7 +111,7 @@ public class Campeonato extends JFrame {
 		b3 = new JButton("Crear");
 
 		contenedor.setLayout(new BorderLayout());
-		panelcentro.setLayout(new GridLayout(3, 2, 50, 50));
+		panelcentro.setLayout(new GridLayout(3, 2, 5, 5));
 
 		// agrega todos los componentes al panel del centro
 		panelcentro.add(label1);
@@ -122,7 +119,7 @@ public class Campeonato extends JFrame {
 		panelcentro.add(label2);
 		panelcentro.add(Text2);
 		panelcentro.add(b3);
-		
+
 		// se le agrega al contenedor todos los paneles en diferentes partes del
 		// frame para una mejor distribucion del los componentes
 		contenedor.add(panelcentro, BorderLayout.CENTER);
@@ -131,40 +128,12 @@ public class Campeonato extends JFrame {
 		contenedor.add(paneloeste, BorderLayout.WEST);
 		add(contenedor);
 
-		Object[][] objects = new Object[Menu.listaP.size()][4];
-		for (int i = 0; i < Menu.listaP.size(); i++) {
-			objects[i][0] = Menu.listaP.get(i).getIdentificacion();
-			objects[i][1] = Menu.listaP.get(i).getNombrePiloto();
-			objects[i][2] = Menu.listaP.get(i).getEscuderia();
-			objects[i][3] = Menu.listaP.get(i).getLicencia();
-
-		}
-
-		String[] name = { "Identificacion", "Nombre", "Escuderia", "Licencia" };
-
-		b = new JTable(objects, name);
-
-		/*
-		 * if (b != null) { this.contenedor.remove(11);
-		 * 
-		 * }
-		 */
-		// Configuro la dimension de la tabla
-
-		b.setPreferredScrollableViewportSize(new Dimension(900, 300));
-		// Redibujo la tabla
-		b.repaint();
-		// Agrego los datos a la tabla en sus respectivas celdas
-		b.addRowSelectionInterval(0, 0);
-		// Dimensiono un scrollPane
-		b.setPreferredScrollableViewportSize(new Dimension(900, 300));
-		// creo un scrollPane
-		JScrollPane scroll = new JScrollPane(b);
-		// Agrego el scrollPane al contenedor
-		getContentPane().add(scroll, BorderLayout.SOUTH);
-		// Configuro la visibilidad del ScrollPane
-		setVisible(true);
-		// Creo el evento para cerrar la ventana
 		
+		Tabla a = new Tabla();
+		Tabla frame = new Tabla();
+		frame.pack();
+		frame.setVisible(true);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 	}
 }
