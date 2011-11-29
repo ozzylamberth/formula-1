@@ -43,7 +43,7 @@ public class Menu extends JFrame {
 					@Override
 					public void actionPerformed(ActionEvent evento) {
 						Campeonato formulario = new Campeonato();
-						formulario.setSize(900, 700);
+						formulario.setSize(500, 300);
 						formulario.setVisible(true);
 					}
 				} // fin de la clase interna anónima
