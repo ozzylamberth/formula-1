@@ -1,10 +1,9 @@
 public class ClasePiloto {
-	
+
 	public String identificacion;
 	public String nombrePiloto;
 	public String escuderia;
 	public String licencia;
-
 
 	public ClasePiloto(String identificacion, String nombrePiloto,
 			String escuderia, String licencia) {
@@ -13,87 +12,38 @@ public class ClasePiloto {
 		this.escuderia = escuderia;
 		this.licencia = licencia;
 	}
-	
-
-	
-
-
 
 	public String getIdentificacion() {
 		return identificacion;
 	}
 
-
-
-
-
-
 	public void setIdentificacion(String identificacion) {
 		this.identificacion = identificacion;
 	}
-
-
-
-
-
 
 	public String getNombrePiloto() {
 		return nombrePiloto;
 	}
 
-
-
-
-
-
 	public void setNombrePiloto(String nombrePiloto) {
 		this.nombrePiloto = nombrePiloto;
 	}
-
-
-
-
-
 
 	public String getEscuderia() {
 		return escuderia;
 	}
 
-
-
-
-
-
 	public void setEscuderia(String escuderia) {
 		this.escuderia = escuderia;
 	}
-
-
-
-
-
 
 	public String getLicencia() {
 		return licencia;
 	}
 
-
-
-
-
-
 	public void setLicencia(String licencia) {
 		this.licencia = licencia;
 	}
-
-
-
-
-
-
-	
-
-
 
 	@Override
 	public int hashCode() {
@@ -109,11 +59,6 @@ public class ClasePiloto {
 				+ ((nombrePiloto == null) ? 0 : nombrePiloto.hashCode());
 		return result;
 	}
-
-
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -147,14 +92,9 @@ public class ClasePiloto {
 		return true;
 	}
 
-
-
-
-
-
 	public String toString() {
-		return identificacion+" "+nombrePiloto + " " + escuderia + " " + licencia;
+		return identificacion + " " + nombrePiloto + " " + escuderia + " "
+				+ licencia;
 	}
-
 
 }
