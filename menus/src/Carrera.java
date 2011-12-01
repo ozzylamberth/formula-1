@@ -1,44 +1,45 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-public class Carrera  extends JFrame{
-	
-	
+
+public class Carrera extends JFrame {
+
 	public void agregar(ClaseCarrera cl) {
 
 		Menu.listaR.add(cl);
 	}
-	
-	        
+
 	public void iguales(ClaseCarrera as) {
 		int re = 0;
 		for (ClaseCarrera p : Menu.listaR) {
 			if (p.getIdCarrera().equals(as.getIdCarrera())) {
 				System.out
-						.println("Ya Existe una Carrera con el mismo Codigo");
-				JOptionPane.showMessageDialog(null,
-				"Ya Existe una Carrera con el mismo Codigo");
+						.println("Ya Existe una Carrera con el mismo id");
+				JOptionPane
+						.showMessageDialog(null,
+								"Ya Existe una Carrera con el mismo id");
 				re = 1;
 			}
 		}
 		if (re == 0)
 			agregar(as);
-			
+
 	}
-	
-	
+
 	public void buscarE(ClaseCarrera asd) {
 		int oe = 1;
 		if (Menu.listaR.isEmpty()) {
@@ -51,12 +52,12 @@ public class Carrera  extends JFrame{
 				}
 			}
 			if (oe == 0) {
-				System.out.println("No Existe la Carrera");
+				System.out.println("No Existe la carrera");
 			}
 
 		}
 	}
-	
+
 	public void actualizarEs(ClaseCarrera asdf) {
 		int a = 0;
 		if (Menu.listaR.isEmpty()) {
@@ -67,20 +68,20 @@ public class Carrera  extends JFrame{
 					a = Menu.listaR.indexOf(d);
 					Menu.listaR.set(a, asdf);
 					System.out
-							.println("La Carrera se ha Actualizado don Exito");
+							.println("la Carrera se ha Actualizado con exito");
 					JOptionPane.showMessageDialog(null,
-							"La Carrera se ha Actualizado don Exito");
+							"la Carrera se ha Actualizado con exito");
 				} else {
 					System.out
-							.println("No existe ninguna Carrera con ese Codigo ");
+							.println("No existe ninguna carrera con ese id");
 					JOptionPane.showMessageDialog(null,
-							"los datos se han actualizado con exito");
+							"los datos se han actualizado cone exito");
 				}
 			}
 
 		}
 	}
-	
+
 	public void eliminarEs(ClaseCarrera asdfg) {
 		int a = -1;
 		if (Menu.listaR.isEmpty()) {
@@ -90,9 +91,9 @@ public class Carrera  extends JFrame{
 				if (c.getIdCarrera().equals(asdfg.getIdCarrera())) {
 					a = Menu.listaR.indexOf(c);
 					Menu.listaR.remove(a);
-					System.out.println("el piloto a sido eliminado");
+					System.out.println("la Carrera ha sido eliminada");
 					JOptionPane.showMessageDialog(null,
-							"el piloto a sido eliminado");
+							"la Carrera ha sido eliminada");
 					// aca debe hacerse el break para que no se siga comparando,
 					// aqui ya se saldria definitivamente del ciclo se encuentra
 					// el numero de documento
@@ -105,211 +106,339 @@ public class Carrera  extends JFrame{
 
 		if (a == -1) {
 			System.out
-					.println("no existe ningun piloto con esa identificacion");
+					.println("no existe ninguna carrera con ese id");
 
 		}
 
 	}
-	
-	
-	JLabel lbcodigo, lbnombre,lbnumvueltas,lbcircuito,lbfecha;
-	JTextField jtcodigo,jtfecha,jtnombre;
-	JComboBox comnumvueltas,comcircuito;
-	JButton btnagregar, btnbuscar,btnactualizar,btneliminar;
-	JPanel panelNorte, contenedor, panelcentro, panelsur, paneloeste,
-			paneleste;
-	JTable tabla;
-	public Carrera(){
-		super("crear carrera");
-		String combonumvueltas[] = { "1", "2", "3", "4","5","6","7","8","9","10"};
-		String combocircuito[] = {"Circuito internacional de barein", "Circuito Callejero de adelaida", "Circutio de charade", "Circuto de bavista"};
-		
-		tabla = new JTable();
-		tabla.setPreferredScrollableViewportSize(new Dimension(200, 100));
-		// Creatamos un contenedor para la Tabla
-		JScrollPane scrollPane = new JScrollPane(tabla);
-		// Agregamos nuestra tabla al contenedor
-		getContentPane().add(scrollPane, BorderLayout.SOUTH);
-		contenedor = new JPanel();
-		panelNorte = new JPanel();
-		panelsur = new JPanel();
-		panelcentro = new JPanel();
-		paneleste = new JPanel();
-		paneloeste = new JPanel();
 
-		lbcodigo = new JLabel("Codigo Carrera");
-		jtcodigo = new JTextField(20);
-		btnagregar = new JButton("Guardar Carrera");
+	// Estas son las variables para las cajas de texto
+	private JTextField jTId, JTnombre, jTFecha;
+	private JComboBox JCNumVueltas, JCCircuito;
+	// Estas son las variables para las eqtiquetas de las cajas de texto
+	private JLabel lblIdentificacion, lblInombre, lblEscuderia, lblLicencia,
+			lblnumvueltas, lbcircuito;
+	// Estas son las variables para los botones
+	private JButton insertar, eliminar, actualizar, buscar;
+	// Esta es la cuadricula que me permite ubicar los elementos de la ventana
+	private GridLayout cuadricula;
+	// Este es el contenedor de la ventana
+	private Container contenedor;
+	// Este es el panel para agregarle los elementos de la ventana
+	private JPanel panel = new JPanel();
+	// Esta es la instancia de la clase calcular
 
-		lbfecha = new JLabel("Fecha Carrera");
-		jtfecha = new JTextField();
-		btnbuscar = new JButton("Buscar Carrera");
-		
-		lbnombre = new JLabel("Nombre Campeonato");
-		jtnombre = new JTextField();
-		btnactualizar = new JButton("Actualizar Carrera");
-		
-		lbnumvueltas = new JLabel("Numero de vueltas");
-		comnumvueltas = new JComboBox(combonumvueltas);
-		btneliminar = new JButton("Eliminar");
-		
+	// Esta es la tabla donde se veran las operaciones
+	private JTable tabla;
+	// Esta es la lista de producto y sus caracteristicas
+	int indice;
+
+	// Este es el contructor de la clase vista
+
+	public Carrera() {
+		// llamada a super para el nombre de la ventana
+		super("Facturacion");
+		String[] listaNumVueltas = { "1", "2", "3", "4", "5" };
+		String[] listaCircuitos = { "Adelaida", "Albert Park", "Bahréin",
+				"Boavista", "Brands Hatch", "Bugatti" };
+		// Instancio la cuadrivula
+		cuadricula = new GridLayout(11, 8);
+		// Asigno el contenedor
+		contenedor = getContentPane();
+		// al contenedor le agrego la cuadricula
+		contenedor.setLayout(cuadricula);
+		// Instancio la etiqueta de cliente
+		lblIdentificacion = new JLabel("Id Carrera");
+		// Instancio la caja de texto del cliente
+		jTId = new JTextField();
+		// instancio la etiqueta de la fecha
+		lblInombre = new JLabel("Nombre Carrera");
+		// Instancio la caja de texto de la fecha
+		JTnombre = new JTextField();
+		// Instancio la etiqueta producto
+		lblEscuderia = new JLabel("Fecha Carrera");
+		// Instancio la caja de texto del producto
+		jTFecha = new JTextField();
+		// Instancio la etiqueta de la descripcion
+		lblnumvueltas = new JLabel("Numero Vueltas");
+		// Instancio la caja de texto de la descripcion
+		JCNumVueltas = new JComboBox(listaNumVueltas);
 		lbcircuito = new JLabel("Circuito");
-		comcircuito = new JComboBox(combocircuito);
+		JCCircuito = new JComboBox(listaCircuitos);
 
-		contenedor.setLayout(new BorderLayout());
-		panelcentro.setLayout(new GridLayout(7, 2, 30, 30));
+		// Creo el boton insertar
+		insertar = new JButton("Insertar");
+		// Asigno el evento al boton insertar
 
-		// agrega todos los componentes al panel del centro
-		panelcentro.add(lbcodigo);
-		panelcentro.add(jtcodigo);
-		panelcentro.add(lbfecha);
-		panelcentro.add(jtfecha);
-		panelcentro.add(lbnombre);
-		panelcentro.add(jtnombre);
-		panelcentro.add(lbnumvueltas);
-		panelcentro.add(comnumvueltas);
-		panelcentro.add(lbcircuito);
-		panelcentro.add(comcircuito);
-		panelcentro.add(btnagregar);
-		panelcentro.add(btnbuscar);
-		panelcentro.add(btnactualizar);
-		panelcentro.add(btneliminar);
-		
+		// Creo el boton eliminar
+		eliminar = new JButton("Eliminar");
+		// Asigno el evento al boton eliminar
 
-	btnagregar.addActionListener(new ActionListener() {
+		// Creo el boton actualizar
+		actualizar = new JButton("Actualizar");
+		// Asigno el evento al boton actualizar
+
+		// Agrego al contenedor la etiqueta nombre
+
+		buscar = new JButton("Buscar");
+		// Asigno el evento al boton buscar
+
+		// Agrego al contenedor la etiqueta buscar
+
+		contenedor.add(lblIdentificacion);
+		// Agrego al contenedor la caja de texto nombre
+		contenedor.add(jTId);
+		// Agrego al contenedor la etiqueta fecha
+		contenedor.add(lblInombre);
+		// Agrego al contenedor la caja de texto fecha
+		contenedor.add(JTnombre);
+		// Agrego al contenedor la etiqqueta de producto
+		contenedor.add(lblEscuderia);
+		// agrego al contenedor la caja de texto producto
+		contenedor.add(jTFecha);
+		contenedor.add(lblnumvueltas);
+		// Agrego al contenedor la etiqueta descripcion
+		contenedor.add(JCNumVueltas);
+		contenedor.add(lbcircuito);
+		// Agrego al contenedor la caja de texto
+		contenedor.add(JCCircuito);
+		// Agrego al contenedor la etiqueta de cantidad
+		contenedor.add(insertar);
+		// Agrego al contenedor la caja de texto cantidad
+		contenedor.add(eliminar);
+		// Agrego al contenedor la etiqueeta de precio
+		contenedor.add(actualizar);
+		// Agrego al contenedor la caja de texto precio
+		contenedor.add(buscar);
+		// Agrego al contenedor el panel
+		contenedor.add(panel);
+		// Dimensiono la ventana
+		// Vuelvo visible los elementos de la ventana
+
+		insertar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-			
-				String codigo, fecha, nombre,numVueltas,circuito;
+				String id, nombreCa, fecha, numVueltas, circuito;
 				Carrera ca = new Carrera();
 
-				codigo = jtcodigo.getText();
-				fecha = jtfecha.getText();
-				nombre = jtnombre.getText();
-				numVueltas = comnumvueltas.getSelectedItem().toString();
-				circuito = comcircuito.getSelectedItem().toString();
+				id = jTId.getText();
+				nombreCa = JTnombre.getText();
+				fecha = jTFecha.getText();
+				numVueltas = JCNumVueltas.getSelectedItem().toString();
+				circuito = JCCircuito.getSelectedItem().toString();
 
-				ClaseCarrera ccc = new ClaseCarrera(codigo, fecha,
-						nombre, numVueltas,circuito);
+				ClaseCarrera ccc = new ClaseCarrera(id, nombreCa, fecha,
+						numVueltas, circuito);
 
 				ca.iguales(ccc);
 
-				jtcodigo.setText("");
-				jtfecha.setText("");
-				jtnombre.setText("");
+				jTId.setText("");
+				JTnombre.setText("");
+				jTFecha.setText("");
+
+				if (tabla != null) {
+					contenedor.remove(15);
+
+				}
+
+				Object[][] objetos = new Object[Menu.listaR.size()][5];
+				for (int i = 0; i < Menu.listaR.size(); i++) {
+
+					objetos[i][0] = Menu.listaR.get(i).getIdCarrera();
+					objetos[i][1] = Menu.listaR.get(i).getNombre();
+					objetos[i][2] = Menu.listaR.get(i).getFecha();
+					objetos[i][3] = Menu.listaR.get(i).getNumvueltas();
+					objetos[i][4] = Menu.listaR.get(i).getCircuito();
+				}
+
+				String[] nombreColumnas = { "Id Carrera", "Nombre", "Fecha",
+						"Numero Vueltas", "Circuito" };
+
+				tabla = new JTable(objetos, nombreColumnas);
+
+				// Redibujo la tabla
+				tabla.repaint();
+				// Agrego los datos a la tabla en sus respectivas celdas
+				tabla.addRowSelectionInterval(0, 0);
+				// Dimensiono un scrollPane
+				tabla
+						.setPreferredScrollableViewportSize(new Dimension(600,
+								200));
+
+				// creo un scrollPane
+				JScrollPane scroll = new JScrollPane(tabla);
+				// Agrego el scrollPane al contenedor
+				contenedor.add(scroll, BorderLayout.SOUTH);
+				// Configuro la visibilidad del ScrollPane
+				setVisible(true);
+				// Creo el evento para cerrar la ventana*/
 
 			}
 		});
 
-		
-	btnbuscar.addActionListener(new ActionListener() {
+		buscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id;
+				Carrera ca = new Carrera();
+				id = jTId.getText();
+				ClaseCarrera cc = new ClaseCarrera(id, "", "", "", "");
+				ca.buscarE(cc);
 
-		public void actionPerformed(ActionEvent e) {
+				for (ClaseCarrera a : Menu.listaR) {
+					JTnombre.setText(String.valueOf(a.getNombre().toString()));
+					jTFecha.setText(String.valueOf(a.getFecha()));
+					JCNumVueltas.setSelectedItem(String.valueOf(a
+							.getNumvueltas().toString()));
+					JCCircuito.setSelectedItem(String.valueOf(a.getCircuito()
+							.toString()));
 
-		
-			String codigo;
-			Carrera ca = new Carrera();
+				}
+			}
+		});
 
-			codigo = jtcodigo.getText();
-			
+		eliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id, nombreCa, fecha, numVueltas, circuito;
+				Carrera ca = new Carrera();
 
-			ClaseCarrera ccc = new ClaseCarrera(codigo, "",
-					"", "","");
+				id = jTId.getText();
+				nombreCa = JTnombre.getText();
+				fecha = jTFecha.getText();
+				numVueltas = JCNumVueltas.getSelectedItem().toString();
+				circuito = JCCircuito.getSelectedItem().toString();
 
-			ca.buscarE(ccc);
-			
+				ClaseCarrera ccc = new ClaseCarrera(id, nombreCa, fecha,
+						numVueltas, circuito);
 
-			for (ClaseCarrera a : Menu.listaR) {
-				jtfecha.setText(String
-						.valueOf(a.getFecha().toString()));
-				jtnombre.setText(String.valueOf(a.getNombre()
-						.toString()));
-				comnumvueltas.setSelectedItem(String.valueOf(a.getNumvueltas().toString()));
-				comcircuito.setSelectedItem(String.valueOf(a.getCircuito().toString()));
-				//comcircuito.setSelectedItem(a.getCircuito().toString());
+				ca.eliminarEs(ccc);
+
+				jTId.setText("");
+				JTnombre.setText("");
+				jTFecha.setText("");
+
+				jTId.setText(""); // se dejan en blanco las cajas de texto
+				// luego de eliminar el estudiante
+				JTnombre.setText("");
+
+				try {
+
+					Object[][] objetos = new Object[Menu.listaR.size()][5];
+					for (int i = 0; i < Menu.listaR.size(); i++) {
+
+						objetos[i][0] = Menu.listaR.get(i).getIdCarrera();
+						objetos[i][1] = Menu.listaR.get(i).getNombre();
+						objetos[i][2] = Menu.listaR.get(i).getFecha();
+						objetos[i][3] = Menu.listaR.get(i).getNumvueltas();
+						objetos[i][4] = Menu.listaR.get(i).getCircuito();
+
+					}
+
+					String[] nombreColumnas = { "Id Carrera", "Nombre",
+							"Fecha", "Numero Vueltas", "Circuito" };
+
+					if (tabla != null) {
+
+						contenedor.remove(15);
+
+					}
+					tabla = new JTable(objetos, nombreColumnas);
+
+					tabla.repaint();
+
+					tabla.setPreferredScrollableViewportSize(new Dimension(100,
+							200));
+
+					JScrollPane scroll = new JScrollPane(tabla);
+					getContentPane().add(scroll, BorderLayout.SOUTH);
+
+					setVisible(true);
+
+					addWindowListener(new WindowAdapter() {
+						public void windowClosing(WindowEvent e) {
+
+							System.exit(0);
+
+						}
+
+					});
+					tabla.removeRowSelectionInterval(0, 0);
+
+				} catch (IllegalArgumentException e1) {
+					JOptionPane.showMessageDialog(null, "piloto eliminado");
+				}
+			}
+		});
+
+		actualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id, nombreCa, fecha, numVueltas, circuito;
+				Carrera ca = new Carrera();
+
+				id = jTId.getText();
+				nombreCa = JTnombre.getText();
+				fecha = jTFecha.getText();
+				numVueltas = JCNumVueltas.getSelectedItem().toString();
+				circuito = JCCircuito.getSelectedItem().toString();
+
+				ClaseCarrera ccc = new ClaseCarrera(id, nombreCa, fecha,
+						numVueltas, circuito);
+
+				ca.actualizarEs(ccc);
+				Object[][] objetos = new Object[Menu.listaR.size()][5];
+				for (int i = 0; i < Menu.listaR.size(); i++) {
+
+					objetos[i][0] = Menu.listaR.get(i).getIdCarrera();
+					objetos[i][1] = Menu.listaR.get(i).getNombre();
+					objetos[i][2] = Menu.listaR.get(i).getFecha();
+					objetos[i][3] = Menu.listaR.get(i).getNumvueltas();
+					objetos[i][4] = Menu.listaR.get(i).getCircuito();
+
+				}
+
+				String[] nombreColumnas = { "Id Carrera", "Nombre", "Fecha",
+						"Numero Vueltas", "Circuito" };
+
+				if (tabla != null) {
+
+					contenedor.remove(15);
+
+				}
+
+				tabla = new JTable(objetos, nombreColumnas);
+
+				tabla.repaint();
+				tabla
+						.setPreferredScrollableViewportSize(new Dimension(900,
+								300));
+
+				JScrollPane scroll = new JScrollPane(tabla);
+				getContentPane().add(scroll, BorderLayout.WEST);
+
+				setVisible(true);
+
+				addWindowListener(new WindowAdapter() {
+					public void windowClosing(WindowEvent e) {
+
+						System.exit(0);
+
+					}
+
+				});
+
+				tabla.setValueAt(ccc.getIdCarrera(), 0, 0);
+				tabla.setValueAt(ccc.getFecha(), 0, 1);
+				tabla.setValueAt(ccc.getNombre(), 0, 2);
+				tabla.setValueAt(ccc.getNumvueltas(), 0, 3);
+				tabla.setValueAt(ccc.getCircuito(), 0, 4);
+
+				jTId.setText("");
+				JTnombre.setText("");
+				jTFecha.setText("");
 
 			}
-
-		}
-	});
-	
-	btnactualizar.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			String codigo, fecha, nombre,numVueltas,circuito;
-			Carrera ca = new Carrera();
-
-			codigo = jtcodigo.getText();
-			fecha = jtfecha.getText();
-			nombre = jtnombre.getText();
-			numVueltas = comnumvueltas.getSelectedItem().toString();
-			circuito = comcircuito.getSelectedItem().toString();
-
-			ClaseCarrera ccc = new ClaseCarrera(codigo, fecha,
-					nombre, numVueltas,circuito);
-
-			ca.actualizarEs(ccc);
-
-			jtcodigo.setText("");
-			jtfecha.setText("");
-			jtnombre.setText("");
-
-		}
-	});
-	
-	btneliminar.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			String codigo, fecha, nombre,numVueltas,circuito;
-			Carrera ca = new Carrera();
-
-			codigo = jtcodigo.getText();
-			fecha = jtfecha.getText();
-			nombre = jtnombre.getText();
-			numVueltas = comnumvueltas.getSelectedItem().toString();
-			circuito = comcircuito.getSelectedItem().toString();
-
-			ClaseCarrera ccc = new ClaseCarrera(codigo, fecha,
-					nombre, numVueltas,circuito);
-
-			ca.eliminarEs(ccc);
-
-			jtcodigo.setText("");
-			jtfecha.setText("");
-			jtnombre.setText("");
-		}
-	});
-		
-		
-		
-		
-		
-
-		
-		
-
-		// se le agrega al contenedor todos los paneles en diferentes partes del
-		// frame para una mejor distribucion del los componentes
-		contenedor.add(panelcentro, BorderLayout.CENTER);
-		contenedor.add(panelNorte, BorderLayout.NORTH);
-		contenedor.add(panelsur, BorderLayout.SOUTH);
-		contenedor.add(paneloeste, BorderLayout.WEST);
-		contenedor.add(paneleste, BorderLayout.EAST);
-		add(contenedor);
-
-		
+		});
 
 	}
-	public static void main(String[] args) {
-		Carrera p = new Carrera();
-		p.setVisible(true);
-		p.setSize(600, 500);
-		p.setResizable(false);
-	}
 
-
-
-		
-		
-	}
-
-
+}

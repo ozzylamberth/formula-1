@@ -1,30 +1,42 @@
-
 public class ClaseCampeonato {
 
-	public int idCampeonato;
+	public String idCampeonato;
 	public String nombreCampeonato;
-	public int getIdCampeonato() {
+
+	public ClaseCampeonato(String idCampeonato, String nombreCampeonato) {
+		this.idCampeonato = idCampeonato;
+		this.nombreCampeonato = nombreCampeonato;
+
+	}
+
+	public String getIdCampeonato() {
 		return idCampeonato;
 	}
-	public void setIdCampeonato(int idCampeonato) {
+
+	public void setIdCampeonato(String idCampeonato) {
 		this.idCampeonato = idCampeonato;
 	}
+
 	public String getNombreCampeonato() {
 		return nombreCampeonato;
 	}
+
 	public void setNombreCampeonato(String nombreCampeonato) {
 		this.nombreCampeonato = nombreCampeonato;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idCampeonato;
+		result = prime * result
+				+ ((idCampeonato == null) ? 0 : idCampeonato.hashCode());
 		result = prime
 				* result
 				+ ((nombreCampeonato == null) ? 0 : nombreCampeonato.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -34,7 +46,10 @@ public class ClaseCampeonato {
 		if (getClass() != obj.getClass())
 			return false;
 		ClaseCampeonato other = (ClaseCampeonato) obj;
-		if (idCampeonato != other.idCampeonato)
+		if (idCampeonato == null) {
+			if (other.idCampeonato != null)
+				return false;
+		} else if (!idCampeonato.equals(other.idCampeonato))
 			return false;
 		if (nombreCampeonato == null) {
 			if (other.nombreCampeonato != null)
@@ -43,10 +58,9 @@ public class ClaseCampeonato {
 			return false;
 		return true;
 	}
-	@Override
+
 	public String toString() {
-		return "ClaseCampeonato [idCampeonato=" + idCampeonato
-				+ ", nombreCampeonato=" + nombreCampeonato + "]";
+		return idCampeonato + " " + nombreCampeonato;
 	}
-	
+
 }

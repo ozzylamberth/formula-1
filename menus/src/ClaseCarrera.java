@@ -1,83 +1,60 @@
 public class ClaseCarrera {
-	
-	
+
 	public String idCarrera;
 	public String fecha;
 	public String nombre;
 	public String numvueltas;
 	public String circuito;
-	
-	public ClaseCarrera (String idCarrera, String fecha,String nombre,String numvueltas,String circuito) {
-		
-		
+
+	public ClaseCarrera(String idCarrera, String fecha, String nombre,
+			String numvueltas, String circuito) {
+
 		this.idCarrera = idCarrera;
 		this.fecha = fecha;
 		this.nombre = nombre;
 		this.numvueltas = numvueltas;
 		this.circuito = circuito;
-		}
-	
+	}
 
-	
 	public String getIdCarrera() {
 		return idCarrera;
 	}
-
-
 
 	public void setIdCarrera(String idCarrera) {
 		this.idCarrera = idCarrera;
 	}
 
-
-
 	public String getFecha() {
 		return fecha;
 	}
-
-
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
-
-
 	public String getNombre() {
 		return nombre;
 	}
-
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
-
 	public String getNumvueltas() {
 		return numvueltas;
 	}
-
-
 
 	public void setNumvueltas(String numvueltas) {
 		this.numvueltas = numvueltas;
 	}
 
-
-
 	public String getCircuito() {
 		return circuito;
 	}
 
-
-
 	public void setCircuito(String circuito) {
 		this.circuito = circuito;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -93,8 +70,6 @@ public class ClaseCarrera {
 				+ ((numvueltas == null) ? 0 : numvueltas.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -133,14 +108,9 @@ public class ClaseCarrera {
 		return true;
 	}
 
-
-
 	public String toString() {
-		return idCarrera+""+ fecha + " " + nombre + " " + numvueltas +""+circuito+" ";
+		return idCarrera + "" + fecha + " " + nombre + " " + numvueltas + ""
+				+ circuito + " ";
 	}
-	
-	
-	
-	
 
 }
